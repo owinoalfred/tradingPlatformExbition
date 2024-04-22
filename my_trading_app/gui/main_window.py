@@ -1,19 +1,15 @@
-import tkinter as tk
-from customtkinter import CTkFrame
-from gui.widgets.parts.toolbar import Toolbar
-from gui.widgets.parts.statusbar import Statusbar
+from tkinter import Tk
+from gui.widgets.parts.menu_bar import create_trading_menu
 
-class MainWindow(tk.Tk):
+class MainWindow:
     def __init__(self):
-        super().__init__()
+        self.root = Tk()
+        self.root.title("My Trading App")
+        create_trading_menu(self.root)  # Add the menu bar to the main window
 
-        self.title("Trading Platform")
+    def run(self):
+        self.root.mainloop()
 
-        self.toolbar = Toolbar(self)
-        self.toolbar.pack(side="top", fill="x")
-
-        self.main_frame = CTkFrame(self)
-        self.main_frame.pack(fill="both", expand=True)
-
-        self.statusbar = Statusbar(self)
-        self.statusbar.pack(side="bottom", fill="x")
+if __name__ == "__main__":
+    window = MainWindow()
+    window.run()
